@@ -1,0 +1,38 @@
+index:
+    url:        \/
+    controller: Index
+    bundle: JHD\Blog
+
+post_list:
+    url:        \/posts
+    controller: PostList
+    bundle: JHD\Blog
+
+post:
+    url:        \/post\/([0-9]+)-(.*)
+    controller: Post
+    bundle: JHD\Blog
+    vars:
+        - id
+        - title
+
+add_post:
+    url:        \/post\/add
+    controller: AddPost
+    bundle: JHD\Blog
+
+edit_post:
+    url:        \/post\/edit\/([0-9]+)-(.*)
+    controller: EditPost
+    bundle: JHD\Blog
+    vars:
+        - id
+        - title
+
+add_comment:
+    url:        \/comment\/([0-9]+)-(.*)
+    controller: AddComment
+    bundle: JHD\Blog
+    vars:
+        - post_id
+        - post_title
