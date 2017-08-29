@@ -1,0 +1,22 @@
+doctrine:
+    dbParams:
+        driver:   pdo_mysql
+        host:     localhost
+        charset:  utf8
+        user:     root
+        password: ''
+        dbname:   blog
+
+    ormConfig:
+        entitiesPath:
+            path: 'src/JHD/Entity'
+        isDevMode: true
+        proxyDir: null
+        cache: null
+        useSimpleAnnotationReader: false
+
+twig:
+    templatePath: 'src/JHD/Views'
+    options:
+        cache: cache
+        debug: true
