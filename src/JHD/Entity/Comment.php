@@ -34,9 +34,9 @@ class Comment
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\Column(type="string", length=50)
      */
-    private $user;
+    private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
@@ -84,19 +84,19 @@ class Comment
     }
 
     /**
-     * @return User
+     * @return mixed
      */
-    public function getUser()
+    public function getAuthor()
     {
-        return $this->user;
+        return $this->author;
     }
 
     /**
-     * @param User $user
+     * @param mixed $author
      */
-    public function setUser($user)
+    public function setAuthor($author)
     {
-        $this->user = $user;
+        $this->author = $author;
     }
 
     /**
