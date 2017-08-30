@@ -17,6 +17,12 @@ doctrine:
 
 twig:
     templatePath: 'src/JHD/Views'
+    defaultFormThemePath: 'vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig'
+    bridgePath: 'vendor/symfony/twig-bridge/Resources/views/Form'
     options:
         cache: cache
         debug: true
+
+symfony:
+    formTranslationPath: 'vendor/symfony/form/Resources/translations/validators.fr.xlf'
+    validatorTranslationPath: 'vendor/symfony/validator/Resources/translations/validators.fr.xlf'
