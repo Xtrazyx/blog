@@ -9,21 +9,12 @@
 namespace JHD\Framework;
 
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator;
-use Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Validation;
-use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
-use Symfony\Component\Security\Csrf\CsrfTokenManager;
-use Symfony\Bridge\Twig\Extension\FormExtension;
-use Symfony\Bridge\Twig\Form\TwigRenderer;
-use Twig_Environment;
-use Twig_Loader_Filesystem;
 
 trait SymfonyForm
 {
@@ -31,35 +22,10 @@ trait SymfonyForm
     {
         $config = new Config();
 
-        // CSRF Token Manager
-        $session = new Session();
-        $csrfGenerator = new UriSafeTokenGenerator();
-        $csrfStorage = new SessionTokenStorage($session);
-        $csrfManager = new CsrfTokenManager($csrfGenerator, $csrfStorage);
-
-        // TWIG
-        $twig = new Twig_Environment(new Twig_Loader_Filesystem(array(
-            ROOT_DIR . $config->getConfigsByKey('twig')['templatePath'],
-            ROOT_DIR . $config->getConfigsByKey('twig')['bridgePath'],
-        )));
-
-        $formEngine = new TwigRendererEngine(array(ROOT_DIR . $config->getConfigsByKey('twig')['defaultFormThemePath']), $twig);
-        $twig->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
-            TwigRenderer::class => function () use ($formEngine, $csrfManager) {
-                return new TwigRenderer($formEngine, $csrfManager);
-            },
-        )));
+        $csrfManager = CsrfManager::createCsrfManager();
 
         // Validator
         $validator = Validation::createValidator();
-
-        // Translation
-        $translator = new Translator('fr');
-        $translator->addLoader('xlf', new XliffFileLoader());
-        $translator->addResource('xlf', ROOT_DIR . $config->getConfigsByKey('symfony')['formTranslationPath'], 'fr', 'validators');
-        $translator->addResource('xlf', ROOT_DIR . $config->getConfigsByKey('symfony')['validatorTranslationPath'], 'fr', 'validators');
-
-        $twig->addExtension(new FormExtension());
 
         // Set up the Form component
         $formFactory = Forms::createFormFactoryBuilder()

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 abstract class Controller
 {
-    use Twig, DoctrineEntityManager, SymfonyForm, SwiftMailer;
+    use RenderTwig, DoctrineEntityManager, SymfonyForm, SwiftMailer;
 
     /**
      * @param Request $request

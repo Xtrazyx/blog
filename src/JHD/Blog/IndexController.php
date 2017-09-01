@@ -25,9 +25,7 @@ class IndexController extends Controller
         {
             $contact = $form->getData();
 
-            $this->render('index.html.twig', array(
-                'contact' => $contact
-            ));
+            header('Location: /'); //TODO
         }
 
         $this->render('index.html.twig', array(
