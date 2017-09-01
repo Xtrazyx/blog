@@ -39,10 +39,11 @@ trait SymfonyForm
 
         // TWIG
         $twig = new Twig_Environment(new Twig_Loader_Filesystem(array(
-            $config->getConfigsByKey('twig')['templatePath'],
-            $config->getConfigsByKey('twig')['bridgePath'],
+            ROOT_DIR . $config->getConfigsByKey('twig')['templatePath'],
+            ROOT_DIR . $config->getConfigsByKey('twig')['bridgePath'],
         )));
-        $formEngine = new TwigRendererEngine(array($config->getConfigsByKey('twig')['defaultFormThemePath']), $twig);
+
+        $formEngine = new TwigRendererEngine(array(ROOT_DIR . $config->getConfigsByKey('twig')['defaultFormThemePath']), $twig);
         $twig->addRuntimeLoader(new \Twig_FactoryRuntimeLoader(array(
             TwigRenderer::class => function () use ($formEngine, $csrfManager) {
                 return new TwigRenderer($formEngine, $csrfManager);
@@ -55,8 +56,8 @@ trait SymfonyForm
         // Translation
         $translator = new Translator('fr');
         $translator->addLoader('xlf', new XliffFileLoader());
-        $translator->addResource('xlf', $config->getConfigsByKey('symfony')['formTranslationPath'], 'fr', 'validators');
-        $translator->addResource('xlf', $config->getConfigsByKey('symfony')['validatorTranslationPath'], 'fr', 'validators');
+        $translator->addResource('xlf', ROOT_DIR . $config->getConfigsByKey('symfony')['formTranslationPath'], 'fr', 'validators');
+        $translator->addResource('xlf', ROOT_DIR . $config->getConfigsByKey('symfony')['validatorTranslationPath'], 'fr', 'validators');
 
         $twig->addExtension(new FormExtension());
 
