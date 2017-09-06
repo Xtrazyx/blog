@@ -1,0 +1,11 @@
+.header{
+    min-height: 150px;
+}
+
+.form{
+    min-height: 650px;
+}
+
+.content{
+    position: relative;
+}

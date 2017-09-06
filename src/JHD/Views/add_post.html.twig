@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+  <div class="form">
+    <div class="container">
+      <h3>Ajouter un post</h3>
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      {{ form_end(form) }}
+    </div>
+  </div>
+
+{% endblock %}

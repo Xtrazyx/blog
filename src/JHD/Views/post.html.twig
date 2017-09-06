@@ -14,6 +14,10 @@
         <div class="col-sm-6 col-md-8 col-lg-10">
           {{ post.author }} {{ post.dateLastModif | date("d/m/Y H:i:s") }}
         </div>
+        {# Auteur - Date de modification#}
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          {{ post.intro }}
+        </div>
       </div>
 
       <div class="row">
@@ -24,13 +28,21 @@
       </div>
 
       <div class="row">
-        {# Lien vers le post #}
+        {# CONTENU #}
         <div class="col-sm-6 col-md-8 col-lg-10">
-          <a href={{ ("post-" ~ post.id ~ "-" ~ post.title) | url_encode }} >
-            Voir le post
-          </a>
+          <h3>{{ post.content }}</h3>
         </div>
       </div>
+
+      {# COMMENTS #}
+      {% for comment in post.comments %}
+        <div class="row">
+          {{ comment.author }} {{ comment.dateCreation }}
+        </div>
+        <div class="row">
+          {{ comment.content }}
+        </div>
+      {% endfor %}
 
     {% endfor %}
   </div>

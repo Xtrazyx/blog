@@ -8,7 +8,7 @@
 
 namespace JHD\Blog;
 
-use JHD\Entity\Comment;
+use JHD\Entity\Post;
 use JHD\Framework\Controller;
 
 class PostListController extends Controller
@@ -16,7 +16,7 @@ class PostListController extends Controller
     public function action()
     {
         $em = $this->getEntityManager();
-        $posts = $em->getRepository(Comment::class)->findAll();
+        $posts = $em->getRepository(Post::class)->findAll();
 
         $this->render('posts_list.html.twig', array(
             'posts' => $posts
