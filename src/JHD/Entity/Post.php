@@ -30,6 +30,11 @@ class Post
     private $dateLastModif;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $title;
+
+    /**
      * @ORM\Column(type="string", length=600)
      */
     private $intro;
@@ -53,6 +58,7 @@ class Post
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->dateLastModif = new \DateTime();
     }
 
     /**
@@ -77,6 +83,22 @@ class Post
     public function setDateLastModif($dateLastModif)
     {
         $this->dateLastModif = $dateLastModif;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**

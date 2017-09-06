@@ -43,6 +43,11 @@ class Comment
      */
     private $post;
 
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+    }
+
     /**
      * @return integer
      */

@@ -1,0 +1,50 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+  <div class="container">
+    {% for post in posts %}
+
+      <div class="row">
+        {# TITRE #}
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          <h3>{{ post.title }}</h3>
+        </div>
+        {# Auteur - Date de modification#}
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          {{ post.author }} {{ post.dateLastModif }}
+        </div>
+        {# Auteur - Date de modification#}
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          {{ post.intro }}
+        </div>
+      </div>
+
+      <div class="row">
+        {# CHAPO #}
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          <h3>{{ post.intro }}</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        {# CONTENU #}
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          <h3>{{ post.content }}</h3>
+        </div>
+      </div>
+
+      {# COMMENTS #}
+      {% for comment in post.comments %}
+        <div class="row">
+          {{ comment.author }} {{ comment.dateCreation }}
+        </div>
+        <div class="row">
+          {{ comment.content }}
+        </div>
+      {% endfor %}
+
+    {% endfor %}
+  </div>
+
+{% endblock %}
