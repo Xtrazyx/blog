@@ -1,5 +1,5 @@
 composer.phar
 cli-config.php
-/cache/
+/web/cache/
 /vendor/
 .idea/*

@@ -27,15 +27,17 @@ class Application
     public function run()
     {
         // Setting routes from YML
-        $router = new Router;
+        $router = new Router($this->request);
         $router->setRoutes();
 
         // Getting controller from matching url route
-        $url = $this->request->getRequestUri();
-        $controller = $router->getController($url);
+        $controller = $router->getController();
 
         // Adding route vars to the request
-        $this->request->request->add($router->getRoute($url)->getVars());
+        $this->request->request->add($router
+            ->getRoute($this->request->getRequestUri())
+            ->getVars()
+        );
 
         // Actioning controller
         $controller->action($this->request);

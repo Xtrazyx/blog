@@ -9,8 +9,6 @@
 namespace JHD\Framework;
 
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
-use Symfony\Component\Translation\Loader\XliffFileLoader;
-use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
@@ -20,8 +18,6 @@ trait SymfonyForm
 {
     public function getFormFactory()
     {
-        $config = new Config();
-
         $csrfManager = CsrfManager::createCsrfManager();
 
         // Validator

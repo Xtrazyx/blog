@@ -24,8 +24,10 @@ trait SwiftMailer
         );
 
         $transport
+            ->setEncryption($config->getConfigsByKey('swift_mailer')['encryption'])
             ->setUsername($config->getConfigsByKey('swift_mailer')['userName'])
-            ->setPassword($config->getConfigsByKey('swift_mailer')['password']);
+            ->setPassword($config->getConfigsByKey('swift_mailer')['password'])
+        ;
 
         // Create the Mailer using your created Transport
         $mailer = new Swift_Mailer($transport);
