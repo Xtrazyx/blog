@@ -17,7 +17,7 @@ trait RenderTwig
      * @param $viewPath string
      * @param $vars array
      */
-    public function render($viewPath, $vars)
+    public function render($viewPath, $vars = array())
     {
         $twig = $this->getTwig();
 

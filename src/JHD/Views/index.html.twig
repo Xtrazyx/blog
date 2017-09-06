@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 
-{% block content %}
+{% block header %}
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -50,6 +50,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+
+{% endblock %}
+
+{% block content %}
 
   <div class="container">
     {{ form_start(form) }}
