@@ -17,7 +17,7 @@ doctrine:
 
 twig:
     templatePath: 'src/JHD/Views'
-    defaultFormThemePath: 'vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig'
+    defaultFormThemePath: 'bootstrap_3_horizontal_layout.html.twig'
     bridgePath: 'vendor/symfony/twig-bridge/Resources/views/Form'
     options:
         cache: cache
@@ -28,7 +28,8 @@ symfony:
     validatorTranslationPath: 'vendor/symfony/validator/Resources/translations/validators.fr.xlf'
 
 swift_mailer:
-    smtpHost: 'myhost.com'
-    port: 25
-    userName: 'myUserName'
-    password: 'myPassword'
+    smtpHost: 'smtp.gmail.com'
+    port: 465
+    userName: 'xtrazyx@gmail.com'
+    password: 'xanaxaego666'
+    encryption: 'ssl'

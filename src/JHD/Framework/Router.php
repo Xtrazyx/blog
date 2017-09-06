@@ -9,17 +9,22 @@
 namespace JHD\Framework;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Yaml;
 
 class Router
 {
     protected $routes;
+    protected $request;
+    protected $url;
 
     const NO_ROUTE = 1;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->routes = new ArrayCollection;
+        $this->request = $request;
+        $this->url = $request->getRequestUri();
     }
 
     public function setRoutes()
@@ -48,16 +53,16 @@ class Router
         }
     }
 
-    public function getController($url)
+    public function getController()
     {
-        $matchedRoute = $this->getRoute($url);
+        $matchedRoute = $this->getRoute($this->url);
         $controllerClass = $matchedRoute->getBundle() . '\\' . $matchedRoute->getController() . 'Controller';
 
         if(!class_exists($controllerClass)){
             throw new \Exception('Le contrôleur class: ' . $controllerClass . ' n\'existe pas !');
         }
 
-        return new $controllerClass();
+        return new $controllerClass($this->request);
     }
 
     /**
@@ -73,7 +78,7 @@ class Router
         foreach ($this->routes as $route)
         {
             // Si la route correspond à l'URL
-            if (!empty($matches = $this->match($route, $url)))
+            if (!empty($matches = $this->match($route, $this->url)))
             {
                 // Si elle a des variables
                 if ($route->hasVars())
@@ -107,7 +112,8 @@ class Router
 
     public function match(Route $route, $url)
     {
-        if (preg_match('/^' . $route->getUrl() . '$/', $url, $matches))
+        $regex = preg_replace('/[\/]/', '\/', $route->getUrl());
+        if (preg_match('/^' . $regex . '$/', $url, $matches))
         {
             return $matches;
         }
@@ -117,4 +123,5 @@ class Router
             return $matches = array();
         }
     }
+
 }

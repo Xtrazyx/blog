@@ -8,14 +8,29 @@
 
 namespace JHD\Framework;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class Controller
 {
-    use Twig, DoctrineEntityManager, SymfonyForm, SwiftMailer;
+    use RenderTwig, DoctrineEntityManager, SymfonyForm, SwiftMailer;
+
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    abstract function action();
 
     /**
-     * @param Request $request
+     * @param $url string
      */
-    abstract function action(Request $request);
+    public function redirect($url)
+    {
+        $response = new RedirectResponse($url);
+        $response->send();
+    }
 }
