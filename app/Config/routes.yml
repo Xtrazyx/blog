@@ -22,12 +22,11 @@ add_post:
     bundle: JHD\Blog
 
 edit_post:
-    url:        /edit_post-([0-9]+)-(.*)
+    url:        /edit_post-([0-9]+)
     controller: EditPost
     bundle: JHD\Blog
     vars:
         id: 1
-        title: ''
 
 add_comment:
     url:        /add_comment-([0-9]+)

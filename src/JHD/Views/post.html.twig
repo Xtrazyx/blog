@@ -12,6 +12,9 @@
         {# Auteur - Date de modification#}
         <div class="col-sm-6 col-md-8 col-lg-10">
           {{ post.author }} {{ post.dateLastModif | date("d/m/Y H:i:s") }}
+          <a href={{ ("edit_post-" ~ post.id) }} >
+            Editer le post
+          </a>
         </div>
       </div>
 
