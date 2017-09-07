@@ -11,11 +11,11 @@ namespace JHD\Blog;
 use JHD\Entity\Post;
 use JHD\Form\AddPostType;
 use JHD\Framework\Controller;
-use Swift_Message;
+use Symfony\Component\HttpFoundation\Request;
 
 class AddPostController extends Controller
 {
-    public function action()
+    public function action(Request $request)
     {
         $formFactory = $this->getFormFactory();
         $em = $this->getEntityManager();
@@ -23,7 +23,7 @@ class AddPostController extends Controller
         $post = new Post();
 
         $form = $formFactory->create(AddPostType::class);
-        $form->handleRequest($this->request);
+        $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {

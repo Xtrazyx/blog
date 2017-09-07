@@ -13,8 +13,8 @@ post:
     controller: Post
     bundle: JHD\Blog
     vars:
-        - id
-        - title
+        id: 1
+        title: ''
 
 add_post:
     url:        /add_post
@@ -26,13 +26,13 @@ edit_post:
     controller: EditPost
     bundle: JHD\Blog
     vars:
-        - id
-        - title
+        id: 1
+        title: ''
 
 add_comment:
     url:        /add_comment
     controller: AddComment
     bundle: JHD\Blog
     vars:
-        - post_id
-        - post_title
+        post_id: 1
+        post_title: ''

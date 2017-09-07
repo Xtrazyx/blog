@@ -15,14 +15,7 @@ abstract class Controller
 {
     use RenderTwig, DoctrineEntityManager, SymfonyForm, SwiftMailer;
 
-    protected $request;
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
-
-    abstract function action();
+    abstract function action(Request $request);
 
     /**
      * @param $url string

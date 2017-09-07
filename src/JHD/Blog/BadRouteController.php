@@ -11,10 +11,11 @@ namespace JHD\Blog;
 use JHD\Form\ContactType;
 use JHD\Framework\Controller;
 use Swift_Message;
+use Symfony\Component\HttpFoundation\Request;
 
 class BadRouteController extends Controller
 {
-    public function action()
+    public function action(Request $request)
     {
         $this->render('error404.html.twig');
     }

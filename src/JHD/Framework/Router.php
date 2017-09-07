@@ -16,7 +16,6 @@ class Router
 {
     protected $routes;
     protected $request;
-    protected $url;
 
     const NO_ROUTE = 1;
 
@@ -24,7 +23,6 @@ class Router
     {
         $this->routes = new ArrayCollection;
         $this->request = $request;
-        $this->url = $request->getRequestUri();
     }
 
     public function setRoutes()
@@ -53,9 +51,9 @@ class Router
         }
     }
 
-    public function getController()
+    public function getController($url)
     {
-        $matchedRoute = $this->getRoute($this->url);
+        $matchedRoute = $this->getRoute($url);
         $controllerClass = $matchedRoute->getBundle() . '\\' . $matchedRoute->getController() . 'Controller';
 
         if(!class_exists($controllerClass)){
@@ -77,14 +75,12 @@ class Router
          */
         foreach ($this->routes as $route)
         {
-            // Si la route correspond à l'URL
-            if (!empty($matches = $this->match($route, $this->url)))
+            if (!empty($matches = $this->match($route, $url)))
             {
-                // Si elle a des variables
-                if ($route->hasVars())
+                if($route->hasVars())
                 {
-                    $varsNames = $route->getVars();
-                    $listVars = [];
+                    $vars = $route->getVars();
+                    $varNames = array_keys($vars);
 
                     // On crée le tableau de variables contenues dans $matches
                     foreach ($matches as $key => $match)
@@ -92,12 +88,11 @@ class Router
                         // La première occurence contient la chaîne complète, les suivantes les groupes
                         if ($key !== 0)
                         {
-                            $listVars[$varsNames[$key - 1]] = $match;
+                            $vars[$varNames[$key - 1]] = $match;
                         }
                     }
 
-                    // On assigne ce tableau de variables à la route
-                    $route->setVars($listVars);
+                    $route->setVars($vars);
                 }
                 return $route;
             }

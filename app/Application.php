@@ -31,13 +31,15 @@ class Application
         $router->setRoutes();
 
         // Getting controller from matching url route
-        $controller = $router->getController();
+        $controller = $router->getController($this->request->getRequestUri());
 
         // Adding route vars to the request
         $this->request->request->add($router
             ->getRoute($this->request->getRequestUri())
             ->getVars()
         );
+
+        //echo ('request parameters: ' . serialize($this->request->request->all()).'<br/>');
 
         // Actioning controller
         $controller->action($this->request);
