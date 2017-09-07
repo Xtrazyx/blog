@@ -28,6 +28,8 @@ class AddPostController extends Controller
         if($form->isSubmitted() && $form->isValid())
         {
             $post = $form->getData();
+            $post->setdateLastModif(new \DateTime());
+
             $em->persist($post);
             $em->flush();
 

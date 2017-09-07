@@ -10,7 +10,7 @@ namespace JHD\Form;
 
 use JHD\Entity\Post;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,7 +24,7 @@ class AddPostType extends AbstractType
         $builder
             ->add('title', TextType::class, array('label' => 'Titre'))
             ->add('author', TextType::class, array('label' => 'Auteur'))
-            ->add('dateLastModif', DateTimeType::class, array('disabled' => true))
+            ->add('dateLastModif', HiddenType::class)
             ->add('intro', TextType::class, array('label' => 'Introduction'))
             ->add('content', TextareaType::class, array('label' => 'Contenu'))
             ->add('envoyer', SubmitType::class)

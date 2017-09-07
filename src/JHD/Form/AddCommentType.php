@@ -11,6 +11,7 @@ namespace JHD\Form;
 use JHD\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +24,7 @@ class AddCommentType extends AbstractType
     {
         $builder
             ->add('author', TextType::class, array('label' => 'Auteur'))
-            ->add('dateCreation', DateTimeType::class, array('disabled' => true))
+            ->add('dateCreation', HiddenType::class)
             ->add('content', TextareaType::class, array('label' => 'Contenu'))
             ->add('envoyer', SubmitType::class)
         ;

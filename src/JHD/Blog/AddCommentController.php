@@ -32,6 +32,7 @@ class AddCommentController extends Controller
         if($form->isSubmitted() && $form->isValid())
         {
             $comment = $form->getData();
+            $comment->setDateCreation(new \DateTime());
             $post->addComment($comment);
 
             $em->persist($comment);
