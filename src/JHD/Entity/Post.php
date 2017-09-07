@@ -163,6 +163,7 @@ class Post
     public function addComment(Comment $comment)
     {
         $this->comments->add($comment);
+        $comment->setPost($this);
     }
 
 }

@@ -30,9 +30,8 @@ edit_post:
         title: ''
 
 add_comment:
-    url:        /add_comment
+    url:        /add_comment-([0-9]+)
     controller: AddComment
     bundle: JHD\Blog
     vars:
         post_id: 1
-        post_title: ''

@@ -26,7 +26,7 @@
       <div class="row">
         {# Lien vers le post #}
         <div class="col-sm-6 col-md-8 col-lg-10">
-          <a href={{ ("post-" ~ post.id ~ "-" ~ post.title) | url_encode }} >
+          <a href={{ ("post-" ~ post.id ~ "-" ~ post.title) | replace({' ' : '-'}) | lower | url_encode }} >
             Voir le post
           </a>
         </div>
