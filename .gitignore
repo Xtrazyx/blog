@@ -3,3 +3,4 @@ cli-config.php
 /web/cache/
 /vendor/
 .idea/*
+/cache/

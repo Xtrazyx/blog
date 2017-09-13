@@ -39,7 +39,7 @@ class Route
 
     public function hasVars()
     {
-        return !empty($vars);
+        return !empty($this->vars);
     }
 
     /**

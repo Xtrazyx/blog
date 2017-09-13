@@ -9,36 +9,43 @@
 namespace JHD\Blog;
 
 use JHD\Form\ContactType;
+use JHD\Framework\Config;
 use JHD\Framework\Controller;
 use Swift_Message;
+use Symfony\Component\HttpFoundation\Request;
 
 class IndexController extends Controller
 {
-    public function action()
+    public function action(Request $request)
     {
         $formFactory = $this->getFormFactory();
 
         $form = $formFactory->create(ContactType::class);
-        $form->handleRequest($this->request);
+        $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
             $contact = $form->getData();
-            $content ='';
+            $content = '';
 
             foreach ($contact as $key => $value)
             {
                 $content .= '<p>' . $key . ': ' . $value . '<p/>';
             }
 
-            $mailer = $this->getMailer();
+            $config = new Config();
+            $email = $config->getConfigsByKey('swift_mailer')['setFrom'];
+            $name = $config->getConfigsByKey('swift_mailer')['name'];
+
             $message = (new Swift_Message('Blog - Contact'))
-                ->setFrom(['xtrazyx@gmail.com' => 'Julien HABERT'])
-                ->setTo(['xtrazyx@gmail.com'])
+                ->setFrom([$email => $name])
+                ->setTo([$email])
                 ->setBody($content)
                 ->setContentType('text/html')
                 ->setCharset('utf-8')
             ;
+
+            $mailer = $this->getMailer();
             $mailer->send($message);
 
             $this->redirect('/');

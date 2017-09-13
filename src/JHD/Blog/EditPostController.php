@@ -9,20 +9,20 @@
 namespace JHD\Blog;
 
 use JHD\Entity\Post;
-use JHD\Form\AddPostType;
+use JHD\Form\EditPostType;
 use JHD\Framework\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class AddPostController extends Controller
+class EditPostController extends Controller
 {
     public function action(Request $request)
     {
         $formFactory = $this->getFormFactory();
         $em = $this->getEntityManager();
 
-        $post = new Post();
+        $post = $em->getRepository(Post::class)->find($request->request->get('id'));
 
-        $form = $formFactory->create(AddPostType::class);
+        $form = $formFactory->create(EditPostType::class, $post);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
@@ -30,13 +30,12 @@ class AddPostController extends Controller
             $post = $form->getData();
             $post->setdateLastModif(new \DateTime());
 
-            $em->persist($post);
             $em->flush();
 
-            $this->redirect('/posts');
+            $this->redirect('/post-' . $post->getId() . '-' . $this->slug($post->getTitle()));
         }
 
-        $this->render('add_post.html.twig', array(
+        $this->render('edit_post.html.twig', array(
             'form' => $form->createView(),
         ));
     }

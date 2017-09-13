@@ -12,15 +12,17 @@ use JHD\Entity\Post;
 use JHD\Framework\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class PostListController extends Controller
+class PostController extends Controller
 {
     public function action(Request $request)
     {
         $em = $this->getEntityManager();
-        $posts = $em->getRepository(Post::class)->findAll();
 
-        $this->render('posts_list.html.twig', array(
-            'posts' => $posts
+        $id = $request->request->get('id');
+        $post = $em->getRepository(Post::class)->find($id);
+
+        $this->render('post.html.twig', array(
+            'post' => $post
         ));
     }
 }

@@ -33,3 +33,5 @@ swift_mailer:
     userName: 'xtrazyx@gmail.com'
     password: 'xanaxaego666'
     encryption: 'ssl'
+    setFrom: 'xtrazyx@gmail.com'
+    name: 'Julien Habert'

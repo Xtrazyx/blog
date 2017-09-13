@@ -3,7 +3,6 @@
 {% block content %}
 
   <div class="container">
-    {% for post in posts %}
 
       <div class="row">
         {# TITRE #}
@@ -13,10 +12,9 @@
         {# Auteur - Date de modification#}
         <div class="col-sm-6 col-md-8 col-lg-10">
           {{ post.author }} {{ post.dateLastModif | date("d/m/Y H:i:s") }}
-        </div>
-        {# Auteur - Date de modification#}
-        <div class="col-sm-6 col-md-8 col-lg-10">
-          {{ post.intro }}
+          <a href={{ ("edit_post-" ~ post.id) }} >
+            Editer le post
+          </a>
         </div>
       </div>
 
@@ -30,21 +28,29 @@
       <div class="row">
         {# CONTENU #}
         <div class="col-sm-6 col-md-8 col-lg-10">
-          <h3>{{ post.content }}</h3>
+          <p>{{ post.content }}</p>
         </div>
       </div>
+
+      <div class="row">
+      {# Lien vers le post #}
+      <div class="col-sm-6 col-md-8 col-lg-10">
+        <a href={{ ("add_comment-" ~ post.id) }} >
+          Ajouter un commentaire
+        </a>
+      </div>
+    </div>
 
       {# COMMENTS #}
       {% for comment in post.comments %}
         <div class="row">
-          {{ comment.author }} {{ comment.dateCreation }}
+          {{ comment.author }} {{ comment.dateCreation | date("d/m/Y H:i:s") }}
         </div>
         <div class="row">
           {{ comment.content }}
         </div>
       {% endfor %}
 
-    {% endfor %}
   </div>
 
 {% endblock %}
