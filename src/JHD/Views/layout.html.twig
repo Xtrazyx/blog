@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
@@ -14,8 +14,7 @@
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet" type="text/css">
 
-  <!-- Custom styles for this template -->
-  <link href="css/carousel.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles -->
   <link href="css/style.css" rel="stylesheet" type="text/css">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,30 +34,34 @@
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
+              <span class="sr-only">Afficher la navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="/">
+              <img src="img/logo_jhd_30_29.png" width="30" height="29" class="logo" alt="logo jhd">
+              JHD Blog
+            </a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
+              <li class="nav-item {{ home_page }}"><a href="/">Accueil</a></li>
+              <li class="nav-item {{ posts_page }}"><a href="/posts">Articles</a></li>
+              <li class="nav-item {{ add_page }}"><a href="/add_post">Créer un article</a></li>
             </ul>
+            <span class="navbar-text pull-right">
+              <a href="#" class="icon-bar"><img src="img/In-White-14px.png"></a>
+            </span>
           </div>
         </div>
       </nav>
     </div>
   </div>
 
-  <header>
+  <header class="header">
     {% block header %}
-      <div class="header">
-        <img src="" alt="">
-      </div>
+        <img src="img/fond_header.jpg" alt="nuages">
     {% endblock %}
   </header>
 
@@ -68,7 +71,7 @@
   </div>
 
   <footer class="container-fluid">
-    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p class="pull-right"><a href="#"><span class="glyphicon glyphicon-triangle-top"></span></a></p>
     <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
   </footer>
 

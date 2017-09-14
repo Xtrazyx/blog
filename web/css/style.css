@@ -1,5 +1,8 @@
+/* GENERAL STYLE
+-------------------------------------------------- */
 .header{
-    min-height: 150px;
+    min-height: 200px;
+    box-shadow: #0f0f0f 0 0 5px;
 }
 
 .form{
@@ -8,4 +11,141 @@
 
 .content{
     position: relative;
+}
+
+.contact-text{
+    font-size: 110%;
+    color: #919090;
+    font-style: italic;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    height: 500px;
+    margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 500px;
+}
+.carousel-inner > .item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 500px;
+    max-width: 2100px;
+}
+
+.carousel .item .active > img{
+
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.navbar-wrapper .navbar {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.navbar-wrapper .navbar .container {
+    width: auto;
+}
+
+.navbar-brand > img{
+    display: inline;
+    position: relative;
+    top: -2px;
+    left: -4px;
+}
+
+.navbar-brand{
+    position: relative;
+    top: -2px;
+}
+
+div.navbar-wrapper > div > nav {
+    background-color: rgba(85, 85, 85, 0.65);
+}
+
+body > div.navbar-wrapper > div > nav{
+    border: none;
+}
+
+#navbar > ul > li > a {
+    color: #d2d1d1;
+}
+
+#navbar > ul > li > a:hover {
+    color: white;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (max-width: 820px){
+    .carousel-caption{
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 768px){
+    .carousel-caption{
+        margin-top: 40px;
+    }
+
+    .portrait {
+        height: 80px;
+    }
+
+    h2, h3 {
+        font-size: 140%;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Navbar positioning foo */
+    .navbar-wrapper {
+        margin-top: 20px;
+    }
+    .navbar-wrapper .container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .navbar-wrapper .navbar {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    /* The navbar becomes detached from the top, so we round the corners */
+    .navbar-wrapper .navbar {
+        border-radius: 4px;
+    }
+
+    .portrait {
+        display: inline-block;
+    }
+
 }

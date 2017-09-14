@@ -20,7 +20,8 @@ class PostListController extends Controller
         $posts = $em->getRepository(Post::class)->findAll();
 
         $this->render('posts_list.html.twig', array(
-            'posts' => $posts
+            'posts' => $posts,
+            'posts_page' => 'active'
         ));
     }
 }

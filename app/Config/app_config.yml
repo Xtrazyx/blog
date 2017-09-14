@@ -17,7 +17,7 @@ doctrine:
 
 twig:
     templatePath: 'src/JHD/Views'
-    defaultFormThemePath: 'bootstrap_3_horizontal_layout.html.twig'
+    defaultFormThemePath: 'bootstrap_3_layout.html.twig'
     bridgePath: 'vendor/symfony/twig-bridge/Resources/views/Form'
     options:
         cache: cache
