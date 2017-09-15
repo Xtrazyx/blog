@@ -59,16 +59,45 @@
 .intro {
     font-size: 120%;
     font-style: italic;
+    margin-left: 10px;
+}
+
+.intro, .post-intro {
     font-weight: bold;
     color: #88898a;
     margin-top: 10px;
-    margin-left: 10px;
 }
 
 /* POST DETAILS
 -------------------------------------------------- */
+.post-intro {
+    font-size: 140%;
+}
 
+.post-content {
+    font-size: 120%;
+}
 
+.comment {
+    padding: 10px;
+    border: solid 1px lightgrey;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: #f9f8f8;
+}
+
+.comment-header {
+    margin-bottom: 5px;
+}
+
+.comment-content {
+    color: #88898a;
+}
+
+.spacer {
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
