@@ -5,6 +5,9 @@
   <div class="container">
 
     <div class="row">
+      <div class="container-fluid">
+        <a href="/posts">< retour aux articles</a>
+      </div>
       {# TITRE #}
       <div class="container-fluid">
         <div class="titre">
@@ -37,7 +40,7 @@
     <div class="row">
       {# CONTENU #}
       <div class="container-fluid">
-        <p class="post-content">{{ post.content }}</p>
+        <p class="post-content">{{ post.content | nl2br }}</p>
       </div>
     </div>
 
@@ -53,7 +56,7 @@
 
     {# COMMENTS #}
     <div class="row">
-      {% if post.comments %}
+      {% if not post.comments is empty %}
         {% for comment in post.comments %}
             <div class="col-sm-6 col-md-6 col-lg-6">
               <div class="comment">

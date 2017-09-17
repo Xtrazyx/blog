@@ -6,39 +6,42 @@
 
     <h1><span class="glyphicon glyphicon-list-alt"></span> Les articles</h1>
     <hr>
-    {% for post in posts %}
-
-      <div class="post-item">
-        <a href={{ ("post-" ~ post.id ~ "-" ~ post.title) | replace({' ' : '-'}) | lower | url_encode }}>
-          <div class="row">
-            {# TITRE #}
-            <div class="container-fluid">
-              <div class="titre">
-                {{ post.title }}
+    {% if not posts is empty %}
+      {% for post in posts %}
+        <div class="post-item">
+          <a href={{ ("post-" ~ post.id ~ "-" ~ post.title) | replace({' ' : '-'}) | lower | url_encode }}>
+            <div class="row">
+              {# TITRE #}
+              <div class="container-fluid">
+                <div class="titre">
+                  {{ post.title }}
+                </div>
+              </div>
+              {# Auteur - Date de modification#}
+              <div class="container-fluid">
+                par <span class="sub">{{ post.author }} </span>
+                <span class="date">
+                    <span class="glyphicon glyphicon-time" style="color: #2e9874"></span>
+                  {{ post.dateLastModif | date("d/m/Y") }}
+                  </span>
               </div>
             </div>
-            {# Auteur - Date de modification#}
-            <div class="container-fluid">
-              par <span class="sub">{{ post.author }} </span>
-              <span class="date">
-                  <span class="glyphicon glyphicon-time" style="color: #2e9874"></span>
-                {{ post.dateLastModif | date("d/m/Y") }}
-                </span>
-            </div>
-          </div>
 
-          <hr>
+            <hr>
 
-          <div class="row">
-            {# CHAPO #}
-            <div class="container-fluid">
-              <p class="intro">"{{ post.intro }}"</p>
+            <div class="row">
+              {# CHAPO #}
+              <div class="container-fluid">
+                <p class="intro">"{{ post.intro }}"</p>
+              </div>
             </div>
-          </div>
-        </a>
-      </div>
-      <hr>
-    {% endfor %}
+          </a>
+        </div>
+        <hr>
+      {% endfor %}
+    {% else %}
+      Il n'y a pas encore de post pour le moment.
+    {% endif %}
   </div>
 
 {% endblock %}

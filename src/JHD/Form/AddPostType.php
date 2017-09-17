@@ -10,6 +10,7 @@ namespace JHD\Form;
 
 use JHD\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -33,6 +34,11 @@ class AddPostType extends AbstractType
                 )
             ))
             ->add('envoyer', SubmitType::class)
+        ;
+
+        $builder
+            ->get('dateLastModif')
+            ->addModelTransformer(new DateTimeToStringTransformer());
         ;
     }
 

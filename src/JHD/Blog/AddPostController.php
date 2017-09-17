@@ -22,13 +22,12 @@ class AddPostController extends Controller
 
         $post = new Post(); // Begin with fresh blank data
 
-        $form = $formFactory->create(AddPostType::class);
+        $form = $formFactory->create(AddPostType::class, $post);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
             $post = $form->getData();
-            $post->setdateLastModif(new \DateTime());
 
             $em->persist($post);
             $em->flush();
