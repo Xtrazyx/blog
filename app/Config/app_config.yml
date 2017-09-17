@@ -1,37 +1,43 @@
+# Doctrine configuration
 doctrine:
+    # Configure this with your own parameters
     dbParams:
         driver:   pdo_mysql
         host:     localhost
         charset:  utf8
-        user:     root
-        password: ''
-        dbname:   blog
+        user:     # your db id here
+        password: # your db password here
+        dbname:   # the db name
 
     ormConfig:
         entitiesPath:
             path: 'src/JHD/Entity'
-        isDevMode: true
+        isDevMode: false
         proxyDir: null
         cache: null
         useSimpleAnnotationReader: false
 
+# Twig configuration
 twig:
     templatePath: 'src/JHD/Views'
     defaultFormThemePath: 'bootstrap_3_layout.html.twig'
     bridgePath: 'vendor/symfony/twig-bridge/Resources/views/Form'
     options:
         cache: cache
-        debug: true
+        debug: false
 
+# Symfony components configuration
 symfony:
     formTranslationPath: 'vendor/symfony/form/Resources/translations/validators.fr.xlf'
     validatorTranslationPath: 'vendor/symfony/validator/Resources/translations/validators.fr.xlf'
 
+# SwiftMailer configuration
+# Configure this with your own parameters
 swift_mailer:
-    smtpHost: 'smtp.gmail.com'
-    port: 465
-    userName: 'xtrazyx@gmail.com'
-    password: 'xanaxaego666'
-    encryption: 'ssl'
-    setFrom: 'xtrazyx@gmail.com'
-    name: 'Julien Habert'
+    smtpHost: # smtp host
+    port: # smtp port
+    userName: # mail id
+    password: # mail password
+    encryption: # ssl, tls, ...
+    setFrom: # default email address
+    name: # default name

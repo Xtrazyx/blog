@@ -1,5 +1,3 @@
-composer.phar
-cli-config.php
 /web/cache/
 /vendor/
 .idea/*
