@@ -53,6 +53,7 @@ class IndexController extends Controller
 
         $this->render('index.html.twig', array(
             'form' => $form->createView(),
+            'home_page' => 'active'
         ));
     }
 }

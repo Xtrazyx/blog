@@ -20,15 +20,14 @@ class AddPostController extends Controller
         $formFactory = $this->getFormFactory();
         $em = $this->getEntityManager();
 
-        $post = new Post();
+        $post = new Post(); // Begin with fresh blank data
 
-        $form = $formFactory->create(AddPostType::class);
+        $form = $formFactory->create(AddPostType::class, $post);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
             $post = $form->getData();
-            $post->setdateLastModif(new \DateTime());
 
             $em->persist($post);
             $em->flush();
@@ -38,6 +37,7 @@ class AddPostController extends Controller
 
         $this->render('add_post.html.twig', array(
             'form' => $form->createView(),
+            'add_page' => 'active'
         ));
     }
 }

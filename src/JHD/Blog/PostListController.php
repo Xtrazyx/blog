@@ -17,10 +17,14 @@ class PostListController extends Controller
     public function action(Request $request)
     {
         $em = $this->getEntityManager();
-        $posts = $em->getRepository(Post::class)->findAll();
+        $posts = $em->getRepository(Post::class)->findBy(
+            array(),
+            array('dateLastModif' => 'DESC')
+        );
 
         $this->render('posts_list.html.twig', array(
-            'posts' => $posts
+            'posts' => $posts,
+            'posts_page' => 'active'
         ));
     }
 }

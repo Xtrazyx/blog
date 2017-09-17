@@ -16,10 +16,7 @@ class EditPostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->get('dateLastModif')
-            ->addModelTransformer(new DateTimeToStringTransformer());
-        ;
+
     }
 
     public function getParent()

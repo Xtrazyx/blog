@@ -4,53 +4,83 @@
 
   <div class="container">
 
-      <div class="row">
-        {# TITRE #}
-        <div class="col-sm-6 col-md-8 col-lg-10">
-          <h3>{{ post.title }}</h3>
-        </div>
-        {# Auteur - Date de modification#}
-        <div class="col-sm-6 col-md-8 col-lg-10">
-          {{ post.author }} {{ post.dateLastModif | date("d/m/Y H:i:s") }}
-          <a href={{ ("edit_post-" ~ post.id) }} >
-            Editer le post
-          </a>
+    <div class="row">
+      <div class="container-fluid">
+        <a href="/posts">< retour aux articles</a>
+      </div>
+      {# TITRE #}
+      <div class="container-fluid">
+        <div class="titre">
+          {{ post.title }}
         </div>
       </div>
-
-      <div class="row">
-        {# CHAPO #}
-        <div class="col-sm-6 col-md-8 col-lg-10">
-          <h3>{{ post.intro }}</h3>
-        </div>
-      </div>
-
-      <div class="row">
-        {# CONTENU #}
-        <div class="col-sm-6 col-md-8 col-lg-10">
-          <p>{{ post.content }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-      {# Lien vers le post #}
-      <div class="col-sm-6 col-md-8 col-lg-10">
-        <a href={{ ("add_comment-" ~ post.id) }} >
-          Ajouter un commentaire
+      {# Auteur - Date de modification#}
+      <div class="container-fluid">
+        par <span class="sub">{{ post.author }} </span>
+        <span class="date">
+          <span class="glyphicon glyphicon-time" style="color: #2e9874"></span>
+          {{ post.dateLastModif | date("d/m/Y") }}
+        </span>
+        {# Bouton éditer #}
+        <a class="btn btn-primary pull-right" href="{{ ("edit_post-" ~ post.id) }}" role="button">
+          Editer
         </a>
       </div>
     </div>
 
-      {# COMMENTS #}
-      {% for comment in post.comments %}
-        <div class="row">
-          {{ comment.author }} {{ comment.dateCreation | date("d/m/Y H:i:s") }}
+    <hr>
+
+    <div class="row">
+      {# CHAPO #}
+      <div class="container-fluid">
+        <p class="post-intro">{{ post.intro }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      {# CONTENU #}
+      <div class="container-fluid">
+        <p class="post-content">{{ post.content | nl2br }}</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="titre">
+      Commentaires
+      {# Lien Ajout de commentaire #}
+      <a class="btn btn-primary pull-right" href="{{ ("add_comment-" ~ post.id) }}" role="button">
+        Ajouter un commentaire
+      </a>
+    </div>
+
+    {# COMMENTS #}
+    <div class="row">
+      {% if not post.comments is empty %}
+        {% for comment in post.comments %}
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="comment">
+                <div class="comment-header">
+                  <span class="sub">
+                    {{ comment.author }}
+                  </span>
+                  <span class="date">
+                    <span class="glyphicon glyphicon-time"></span>
+                    {{ comment.dateCreation | date("d/m/Y") }}
+                  </span>
+                </div>
+                <div class="comment-content">
+                  {{ comment.content }}
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+      {% else %}
+        <div class="container-fluid">
+          Il n'y a pas encore de commentaires. Soyez le premier à donner votre avis.
         </div>
-        <div class="row">
-          {{ comment.content }}
-        </div>
-      {% endfor %}
+      {% endif %}
+    </div>
 
   </div>
-
 {% endblock %}
